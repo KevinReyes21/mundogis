@@ -1,0 +1,129 @@
+/* =========================
+   RESET
+========================= */
+
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+}
+
+
+/* =========================
+   BODY BASE
+========================= */
+
+body{
+  font-family:Arial, Helvetica, sans-serif;
+  color:white;
+
+  background:
+    radial-gradient(circle at top, #102030 0%, #05070d 60%);
+}
+
+
+/* =========================
+   FONDO ANIMADO
+========================= */
+
+body::before{
+  content:"";
+
+  position:fixed;
+
+  inset:0;
+
+  width:200%;
+  height:200%;
+
+  background:
+    radial-gradient(
+      rgba(0,255,170,0.08) 1px,
+      transparent 1px
+    );
+
+  background-size:40px 40px;
+
+  animation:mover 30s linear infinite;
+
+  z-index:0;
+
+  pointer-events:none;
+}
+
+
+/* =========================
+   ANIMACIÓN FONDO
+========================= */
+
+@keyframes mover{
+
+  from{
+    transform:translate(0,0);
+  }
+
+  to{
+    transform:translate(-200px,-200px);
+  }
+
+}
+
+
+/* =========================
+   REVEAL
+========================= */
+
+@keyframes reveal{
+
+  to{
+    opacity:1;
+    transform:translateY(0);
+  }
+
+}
+
+
+/* =========================
+   BOTONES GLOBALES
+========================= */
+
+.btn{
+  display:inline-block;
+
+  padding:14px 28px;
+
+  border:none;
+
+  border-radius:14px;
+
+  background:#00c896;
+
+  color:white;
+
+  font-size:1rem;
+  font-weight:bold;
+
+  text-decoration:none;
+
+  cursor:pointer;
+
+  transition:0.3s ease;
+}
+
+.btn:hover{
+  transform:translateY(-3px);
+
+  background:#00e0a8;
+
+  box-shadow:
+    0 10px 25px rgba(0,200,150,0.35);
+}
+
+
+/* =========================
+   UTILIDADES
+========================= */
+
+.hidden{
+  display:none;
+}

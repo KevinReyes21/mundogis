@@ -1,0 +1,82 @@
+/* =========================
+   BODY
+========================= */
+
+.index-body{
+  height:100vh;
+
+  display:flex;
+  justify-content:center;
+  align-items:center;
+
+  overflow:hidden;
+}
+
+
+/* =========================
+   CARD
+========================= */
+
+.card{
+  position:relative;
+  z-index:1;
+
+  width:420px;
+
+  padding:60px 40px;
+
+  border-radius:28px;
+
+  background:rgba(255,255,255,0.06);
+
+  backdrop-filter:blur(18px);
+
+  border:1px solid rgba(255,255,255,0.12);
+
+  text-align:center;
+
+  box-shadow:
+    0 0 40px rgba(0,0,0,0.4);
+
+  opacity:0;
+
+  transform:translateY(40px);
+
+  animation:reveal 1.2s ease forwards;
+}
+
+
+/* =========================
+   TÍTULO
+========================= */
+
+.card h1{
+  font-size:4rem;
+
+  letter-spacing:2px;
+
+  margin-bottom:15px;
+
+  background:
+    linear-gradient(
+      90deg,
+      #ffffff,
+      #00ffbf
+    );
+
+  -webkit-background-clip:text;
+  -webkit-text-fill-color:transparent;
+}
+
+
+/* =========================
+   TEXTO
+========================= */
+
+.card p{
+  color:rgba(255,255,255,0.7);
+
+  margin-bottom:35px;
+
+  line-height:1.5;
+}

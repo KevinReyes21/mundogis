@@ -1,0 +1,324 @@
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+}
+
+body{
+  height:100vh;
+
+  display:flex;
+  justify-content:center;
+  align-items:center;
+
+  overflow:hidden;
+
+  font-family:Arial, Helvetica, sans-serif;
+
+  background:
+    radial-gradient(circle at top, #102030 0%, #05070d 60%);
+
+  color:white;
+}
+
+/* Fondo animado */
+
+body::before{
+  content:"";
+
+  position:absolute;
+
+  width:200%;
+  height:200%;
+
+  background:
+    radial-gradient(rgba(0,255,170,0.08) 1px, transparent 1px);
+
+  background-size:40px 40px;
+
+  animation:mover 30s linear infinite;
+
+  z-index:0;
+
+  pointer-events:none;
+}
+
+@keyframes mover{
+  from{
+    transform:translate(0,0);
+  }
+
+  to{
+    transform:translate(-200px,-200px);
+  }
+}
+
+/* Tarjeta */
+
+.card{
+  position:relative;
+  z-index:1;
+
+  width:420px;
+
+  padding:60px 40px;
+
+  border-radius:28px;
+
+  background:rgba(255,255,255,0.06);
+
+  backdrop-filter:blur(18px);
+
+  border:1px solid rgba(255,255,255,0.12);
+
+  text-align:center;
+
+  box-shadow:
+    0 0 40px rgba(0,0,0,0.4);
+
+  opacity:0;
+
+  transform:translateY(40px);
+
+  animation:reveal 1.2s ease forwards;
+}
+
+/* Reveal */
+
+@keyframes reveal{
+  to{
+    opacity:1;
+    transform:translateY(0);
+  }
+}
+
+h1{
+  font-size:4rem;
+
+  letter-spacing:2px;
+
+  margin-bottom:15px;
+
+  background:linear-gradient(90deg,#ffffff,#00ffbf);
+
+  -webkit-background-clip:text;
+  -webkit-text-fill-color:transparent;
+}
+
+p{
+  color:rgba(255,255,255,0.7);
+
+  margin-bottom:35px;
+
+  line-height:1.5;
+}
+
+/* Botón */
+
+.btn{
+  display:inline-block;
+
+  padding:14px 30px;
+
+  border-radius:14px;
+
+  text-decoration:none;
+
+  background:#00c896;
+
+  color:white;
+
+  font-weight:bold;
+
+  transition:0.3s ease;
+}
+
+.btn:hover{
+  transform:translateY(-3px);
+
+  background:#00e0a8;
+
+  box-shadow:
+    0 10px 25px rgba(0,200,150,0.35);
+}
+
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+}
+
+body{
+  height:100vh;
+
+  display:flex;
+  justify-content:center;
+  align-items:center;
+
+  overflow:hidden;
+
+  font-family:Arial, Helvetica, sans-serif;
+
+  background:
+    radial-gradient(circle at top, #102030 0%, #05070d 60%);
+
+  color:white;
+}
+
+/* Fondo */
+
+body::before{
+  content:"";
+
+  position:absolute;
+
+  width:200%;
+  height:200%;
+
+  background:
+    radial-gradient(rgba(0,255,170,0.08) 1px, transparent 1px);
+
+  background-size:40px 40px;
+
+  animation:mover 30s linear infinite;
+
+  z-index:0;
+}
+
+@keyframes mover{
+  from{
+    transform:translate(0,0);
+  }
+
+  to{
+    transform:translate(-200px,-200px);
+  }
+}
+
+/* Tarjeta */
+
+.card{
+  position:relative;
+  z-index:1;
+
+  width:420px;
+
+  padding:50px 40px;
+
+  border-radius:28px;
+
+  background:rgba(255,255,255,0.06);
+
+  backdrop-filter:blur(18px);
+
+  border:1px solid rgba(255,255,255,0.12);
+
+  box-shadow:
+    0 0 40px rgba(0,0,0,0.4);
+
+  opacity:0;
+
+  transform:translateY(40px);
+
+  animation:reveal 1.2s ease forwards;
+}
+
+/* Reveal */
+
+@keyframes reveal{
+  to{
+    opacity:1;
+    transform:translateY(0);
+  }
+}
+
+.card h1{
+  text-align:center;
+
+  margin-bottom:35px;
+
+  font-size:2.3rem;
+
+  background:linear-gradient(90deg,#ffffff,#00ffbf);
+
+  -webkit-background-clip:text;
+  -webkit-text-fill-color:transparent;
+}
+
+/* Formulario */
+
+.formulario{
+  display:flex;
+  flex-direction:column;
+  gap:20px;
+}
+
+/* Inputs */
+
+.formulario input{
+  width:100%;
+
+  padding:15px 18px;
+
+  border:none;
+
+  border-radius:14px;
+
+  background:rgba(255,255,255,0.08);
+
+  color:white;
+
+  font-size:1rem;
+
+  outline:none;
+
+  transition:0.3s ease;
+}
+
+.formulario input::placeholder{
+  color:rgba(255,255,255,0.5);
+}
+
+/* Focus */
+
+.formulario input:focus{
+  border:1px solid #00ffbf;
+
+  box-shadow:
+    0 0 15px rgba(0,255,191,0.25);
+}
+
+/* Botón */
+
+.btn{
+  padding:15px;
+
+  border:none;
+
+  border-radius:14px;
+
+  background:#00c896;
+
+  color:white;
+
+  font-size:1rem;
+
+  font-weight:bold;
+
+  cursor:pointer;
+
+  transition:0.3s ease;
+}
+
+.btn:hover{
+  transform:translateY(-3px);
+
+  background:#00e0a8;
+
+  box-shadow:
+    0 10px 25px rgba(0,200,150,0.35);
+}
+
+.hidden{
+  display:none;
+}
