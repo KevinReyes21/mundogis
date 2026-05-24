@@ -2,9 +2,9 @@
 // CONFIG SUPABASE
 // ==========================
 
-const SUPABASE_URL = "AQUI_TU_PROJECT_URL";
+const SUPABASE_URL = "https://fkmerfevyfybyyuoeoix.supabase.co";
 
-const SUPABASE_KEY = "AQUI_TU_PUBLISHABLE_KEY";
+const SUPABASE_KEY = "sb_publishable_oRZGW69066Hnvz_kakWyxQ_fEzOxR3b";
 
 // Crear conexión
 const supabaseClient = supabase.createClient(
