@@ -165,3 +165,42 @@
   width:100%;
   height:100%;
 }
+
+/* =========================
+   NAVBAR RIGHT
+========================= */
+
+.navbar-right{
+  display:flex;
+  align-items:center;
+  gap:25px;
+}
+
+
+/* =========================
+   FILTRO
+========================= */
+
+.filtro-container{
+  display:flex;
+  align-items:center;
+  gap:12px;
+}
+
+.filtro-container label{
+  font-size:0.9rem;
+
+  color:rgba(255,255,255,0.7);
+}
+
+.filtro-container input{
+  width:180px;
+}
+
+#valorFiltro{
+  min-width:50px;
+
+  font-weight:bold;
+
+  color:#00ffaa;
+}

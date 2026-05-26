@@ -14,7 +14,6 @@ const viewer = new Cesium.Viewer(
   "cesiumContainer",
   {
 
-    // UI
     animation:false,
     timeline:false,
     baseLayerPicker:false,
@@ -25,10 +24,6 @@ const viewer = new Cesium.Viewer(
     infoBox:false,
     fullscreenButton:false,
 
-    // Rendimiento
-    shouldAnimate:true,
-
-    // Terreno
     terrain: Cesium.Terrain.fromWorldTerrain()
 
   }
@@ -36,84 +31,125 @@ const viewer = new Cesium.Viewer(
 
 
 // ==========================
-// CONFIGURACIÓN GENERAL
+// CONFIG GENERAL
 // ==========================
 
-// Iluminación real
 viewer.scene.globe.enableLighting = true;
 
-// Atmósfera
 viewer.scene.skyAtmosphere.show = true;
 
-// Niebla
 viewer.scene.fog.enabled = true;
-
-// FPS más suaves
-viewer.scene.requestRenderMode = false;
-
-
-// ==========================
-// CÁMARA INICIAL
-// ==========================
-
-viewer.camera.flyTo({
-
-  destination: Cesium.Cartesian3.fromDegrees(
-    -89.6237, // longitud
-    20.9674,  // latitud
-    25000000  // altura
-  ),
-
-  duration:3
-
-});
-
-
-// ==========================
-// OCULTAR CREDITOS CESIUM
-// ==========================
 
 viewer.cesiumWidget.creditContainer.style.display =
   "none";
 
 
 // ==========================
-// CLICK EN MAPA
+// CARGAR GEOJSON
 // ==========================
 
-const handler =
-  new Cesium.ScreenSpaceEventHandler(
-    viewer.scene.canvas
-  );
+async function cargarGeoJSON(){
 
-handler.setInputAction((click) => {
-
-  const cartesian =
-    viewer.camera.pickEllipsoid(
-      click.position,
-      viewer.scene.globe.ellipsoid
+  const geojson =
+    await Cesium.GeoJsonDataSource.load(
+      "assets/poblacion_de_12_anos_y_mas_economicamente_activa.geojson",
+      {
+        clampToGround:false
+      }
     );
 
-  if(cartesian){
+  viewer.dataSources.add(geojson);
 
-    const cartographic =
-      Cesium.Cartographic.fromCartesian(cartesian);
+  entidades =
+    geojson.entities.values;
 
-    const lat =
-      Cesium.Math.toDegrees(
-        cartographic.latitude
-      );
+  for(let i = 0; i < entidades.length; i++){
 
-    const lon =
-      Cesium.Math.toDegrees(
-        cartographic.longitude
-      );
+    const entity = entidades[i];
 
-    console.log(
-      `Lat: ${lat.toFixed(6)}
-Lon: ${lon.toFixed(6)}`
-    );
+    // Verificar que exista polígono
+    if(!entity.polygon){
+      continue;
+    }
+
+    // Obtener valor
+    const valor =
+      Number(entity.properties._Field4?._value);
+
+    // Validar número
+    if(isNaN(valor)){
+      continue;
+    }
+
+    // Escala altura
+    const altura =
+      valor * 3;
+
+    // Altura base
+    entity.polygon.height = 0;
+
+    // Extrusión
+    entity.polygon.extrudedHeight =
+      altura;
+
+    // Material
+    entity.polygon.material =
+      Cesium.Color.fromCssColorString(
+        "#00ffaa"
+      ).withAlpha(0.75);
+
+    // Outline
+    entity.polygon.outline = false;
 
   }
 
-}, Cesium.ScreenSpaceEventType.LEFT_CLICK);
+  // Zoom automático
+  viewer.flyTo(geojson);
+
+}
+let entidades = [];
+cargarGeoJSON();
+
+// ==========================
+// FILTRO _Field4
+// ==========================
+
+const slider =
+  document.getElementById(
+    "filtroField4"
+  );
+
+const valorFiltro =
+  document.getElementById(
+    "valorFiltro"
+  );
+
+
+slider.addEventListener("input", () => {
+
+  const minimo =
+    Number(slider.value);
+
+  valorFiltro.textContent =
+    minimo;
+
+  for(let i = 0; i < entidades.length; i++){
+
+    const entity =
+      entidades[i];
+
+    if(!entity.polygon){
+      continue;
+    }
+
+    const valor =
+      Number(
+        entity.properties._Field4?._value
+      );
+
+    entity.show =
+      valor >= minimo;
+
+  }
+
+});

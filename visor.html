@@ -30,12 +30,39 @@
       MundoGIS
     </div>
 
-    <button id="logoutBtn"
-            class="logout-btn">
+    <div class="navbar-right">
 
-      Cerrar sesión
+      <div class="filtro-container">
 
-    </button>
+        <label for="filtroField4">
+
+          _Field4 mínimo
+
+        </label>
+
+        <input
+          type="range"
+          id="filtroField4"
+          min="0"
+          max="5000"
+          step="100"
+          value="0">
+
+        <span id="valorFiltro">
+          0
+        </span>
+
+      </div>
+
+
+      <button id="logoutBtn"
+              class="logout-btn">
+
+        Cerrar sesión
+
+      </button>
+
+    </div>
 
   </header>
 
